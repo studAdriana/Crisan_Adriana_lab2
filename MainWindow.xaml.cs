@@ -29,5 +29,38 @@ namespace Crisan_Adriana_lab2
         {
 
         }
+        private DoughnutMachine myDoughnutMachine;
+        private void frmMain_Loaded(object sender, RoutedEventArgs e)
+        {
+            myDoughnutMachine = new DoughnutMachine();
+        }
+        private void glazedToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            glazedToolStripMenuItem.IsChecked = true;
+            sugarToolStripMenuItem.IsChecked = false;
+            myDoughnutMachine.MakeDoughnuts(DoughnutType.Glazed);
+        }
+        private void sugarToolStripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            glazedToolStripMenuItem.IsChecked = false;
+            sugarToolStripMenuItem.IsChecked = true;
+            myDoughnutMachine.MakeDoughnuts(DoughnutType.Sugar);
+        }
+    }
+    private void DoughnutCompleteHandler()
+    {
+        switch (myDoughnutMachine.Flavor)
+        {
+            case DoughnutType.Glazed:
+                mRaisedGlazed++;
+                txtGlazedRaised.Text = mRaisedGlazed.ToString();
+                break;
+
+            case DoughnutType.Sugar:
+                mRaisedSugar++;
+                txtSugarRaised.Text = mRaisedSugar.ToString();
+                break;
+                //...
+        }
     }
 }
